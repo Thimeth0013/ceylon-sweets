@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { CartProvider } from './context/CartContext';
 import NavBar from './sections/NavBar';
 import Home from './sections/Home';
 import Sweets from './sections/Sweets';
@@ -9,7 +10,7 @@ import "./index.css";
 const App = () => {
 
   return (
-    <>
+    <CartProvider>
       <div>
           <NavBar/>
           <Home/>
@@ -17,7 +18,7 @@ const App = () => {
           <About/>
           <Contact/>
       </div> 
-    </>
+    </CartProvider>
   )
 }
 
