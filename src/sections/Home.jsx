@@ -1,9 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import bgVideo from '../assets/bgvideo.mp4';
+import { ArrowDownRight } from 'lucide-react';
 
 const Home = () => {
-  // Animation variants for staggering content
+  // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -25,7 +26,8 @@ const Home = () => {
   };
 
   return (
-    <section id="home" className="relative w-full h-screen flex flex-col justify-center items-center overflow-hidden bg-black">
+    // Changed h-screen to h-[100dvh] for better mobile browser support (address bar issues)
+    <section id="home" className="relative w-full h-dvh flex flex-col justify-center items-center overflow-hidden bg-black">
       
       {/* 1. BACKGROUND VIDEO */}
       <motion.div 
@@ -39,18 +41,15 @@ const Home = () => {
           autoPlay 
           loop 
           muted 
-          playsInline
+          playsInline // Essential for iOS
         >
-          {/* Using a remote URL to ensure it works without local assets */}
           <source 
             src={bgVideo}
             type="video/mp4" 
           />
         </video>
-        {/* Cinematic Gradient Overlay */}
+        {/* Gradient Overlay */}
         <div className="absolute inset-0 bg-linear-to-b from-black/80 via-black/40 to-black/90 z-10"></div>
-        {/* Subtle texture overlay for 'paper' feel (optional) */}
-        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-10 z-10 mix-blend-overlay"></div>
       </motion.div>
 
       {/* 2. HERO CONTENT */}
@@ -58,16 +57,17 @@ const Home = () => {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="relative z-20 text-center px-4 max-w-5xl mx-auto flex flex-col items-center"
+        className="relative z-20 text-center px-6 max-w-5xl mx-auto flex flex-col items-center w-full"
       >
         
         {/* Decorative Top Line */}
-        <motion.div variants={itemVariants} className="w-24 h-px bg-linear-to-r from-transparent via-[#D4AF37] to-transparent mb-6 opacity-70"></motion.div>
+        <motion.div variants={itemVariants} className="w-16 md:w-24 h-px bg-linear-to-r from-transparent via-[#D4AF37] to-transparent mb-6 opacity-70"></motion.div>
 
-        {/* Main Title - Modernized Traditional Typography */}
+        {/* Main Title - Responsive Text Sizes */}
         <motion.h1 
           variants={itemVariants}
-          className="text-[#FDF6E3] font-serif text-5xl md:text-7xl lg:text-8xl font-bold mb-4 drop-shadow-2xl tracking-wide relative"
+          className="font-serif font-bold mb-4 drop-shadow-2xl tracking-wide relative
+                     text-5xl sm:text-6xl md:text-7xl lg:text-8xl leading-tight" // Smoother scaling
         >
           <span className="bg-clip-text text-transparent bg-linear-to-b from-[#FFF] via-[#E6DCC8] to-[#998A70]">
             Ceylon Sweets
@@ -77,7 +77,7 @@ const Home = () => {
         {/* Subtitle */}
         <motion.p 
           variants={itemVariants}
-          className="text-[#E6DCC8] font-sans text-lg md:text-2xl font-light tracking-widest opacity-90 drop-shadow-lg max-w-4xl leading-relaxed mb-10"
+          className="text-[#E6DCC8] font-noto tracking-widest opacity-90 drop-shadow-lg max-w-4xl leading-relaxed mb-10 md:mb-12 text-base sm:text-lg md:text-2xl px-2"
         >
           Authentic Sri Lankan sweets crafted with tradition and care.
         </motion.p>
@@ -85,30 +85,30 @@ const Home = () => {
         {/* 3. BUTTONS CONTAINER */}
         <motion.div 
           variants={itemVariants}
-          className="flex flex-col sm:flex-row gap-8 items-center w-full justify-center"
+          className="flex flex-col sm:flex-row gap-4 sm:gap-8 items-center w-full sm:w-auto px-4 sm:px-0 mb-20 md:mb-0"
         >
             
-            {/* Primary Button: "The Gold Bar" */}
+            {/* Primary Button */}
             <motion.a
                 href="#sweets"
-                whileHover={{ scale: 1.05, boxShadow: "0px 0px 20px rgba(212, 175, 55, 0.4)" }}
+                whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="group relative px-10 py-4 bg-linear-to-r from-[#B8860B] via-[#D4AF37] to-[#B8860B] text-[#2A1B12] font-serif font-bold text-lg tracking-widest uppercase overflow-hidden shadow-[0_4px_15px_rgba(0,0,0,0.5)] border border-[#F4C430]"
+                className="group relative w-full sm:w-auto px-8 md:px-10 py-4 bg-linear-to-r from-[#B8860B] via-[#D4AF37] to-[#B8860B] text-[#2A1B12] font-serif font-bold text-base md:text-lg tracking-widest uppercase overflow-hidden shadow-lg border border-[#F4C430] flex justify-center items-center"
             >
                 {/* Shine Effect */}
                 <div className="absolute top-0 -left-full w-full h-full bg-linear-to-r from-transparent via-white/40 to-transparent skew-x-30 group-hover:animate-shine" />
                 <span className="relative z-10 flex items-center gap-2">
                     View Collection 
-                    <span className="text-xl">→</span>
+                    <span className="text-lg"><ArrowDownRight size={20} /></span>
                 </span>
             </motion.a>
 
-            {/* Secondary Button: "Glass Outline" */}
+            {/* Secondary Button */}
             <motion.a
                 href="#about"
                 whileHover={{ scale: 1.05, backgroundColor: "rgba(212, 175, 55, 0.1)" }}
                 whileTap={{ scale: 0.95 }}
-                className="px-10 py-4 bg-white/5 backdrop-blur-sm border border-[#D4AF37]/50 text-[#D4AF37] font-serif font-bold text-lg tracking-widest uppercase shadow-lg transition-all duration-300"
+                className="w-full sm:w-auto px-8 md:px-10 py-4 bg-white/5 backdrop-blur-sm border border-[#D4AF37]/50 text-[#D4AF37] font-serif font-bold text-base md:text-lg tracking-widest uppercase shadow-lg transition-all duration-300 flex justify-center items-center"
             >
                 Our Story
             </motion.a>
@@ -122,11 +122,11 @@ const Home = () => {
         initial={{ opacity: 0 }} 
         animate={{ opacity: 1, y: [0, 10, 0] }}
         transition={{ delay: 2, duration: 2, repeat: Infinity }}
-        className="absolute bottom-10 z-20 cursor-pointer flex flex-col items-center gap-2"
+        className="absolute bottom-20 md:bottom-10 z-20 cursor-pointer flex flex-col items-center gap-2" // Raised on mobile to avoid browser nav bars
         onClick={() => document.getElementById('sweets')?.scrollIntoView({ behavior: 'smooth' })}
       >
         <span className="text-[#D4AF37] text-xs tracking-[0.3em] uppercase opacity-70">Scroll</span>
-        <div className="w-px h-12 bg-linear-to-b from-[#D4AF37] to-transparent"></div>
+        <div className="w-px h-8 md:h-12 bg-linear-to-b from-[#D4AF37] to-transparent"></div>
       </motion.div>
 
       {/* Custom Keyframe for Shine Animation */}
