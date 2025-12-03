@@ -17,6 +17,18 @@ export function CartProvider({ children }) {
     }
   });
 
+  // Toast state
+  const [toast, setToast] = useState({ show: false, message: '', type: 'success' });
+
+  // Toast functions
+  const showToast = (message, type = 'success') => {
+    setToast({ show: true, message, type });
+  };
+
+  const hideToast = () => {
+    setToast({ show: false, message: '', type: 'success' });
+  };
+
   // 2. Sync with LocalStorage whenever cart changes
   useEffect(() => {
     localStorage.setItem("ceylonSweetsCart", JSON.stringify(cartItems));
@@ -27,13 +39,19 @@ export function CartProvider({ children }) {
     return cartItems.find(item => item.id === id && item.variant === variantName)?.quantity || 0;
   }
 
-  // 4. Add Item (Increase)
+  // 4. Add Item (Increase) - WITH TOAST
   function increaseCartQuantity(id, variantName, price, name, image) {
     setCartItems(currItems => {
       // Check if item already exists
-      if (currItems.find(item => item.id === id && item.variant === variantName) == null) {
+      const existingItem = currItems.find(item => item.id === id && item.variant === variantName);
+      
+      if (existingItem == null) {
+        // New item - show "added" toast
+        showToast(`${name} added to cart!`, 'success');
         return [...currItems, { id, variant: variantName, price, name, image, quantity: 1 }];
       } else {
+        // Existing item - show "updated" toast
+        showToast(`Updated ${name} quantity!`, 'success');
         return currItems.map(item => {
           if (item.id === id && item.variant === variantName) {
             return { ...item, quantity: item.quantity + 1 };
@@ -93,7 +111,10 @@ export function CartProvider({ children }) {
         clearCart,
         cartItems,
         cartQuantity,
-        cartTotal
+        cartTotal,
+        toast,
+        showToast,
+        hideToast
       }}
     >
       {children}
