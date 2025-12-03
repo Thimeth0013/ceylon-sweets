@@ -1,25 +1,41 @@
-import { useState } from 'react';
-import { CartProvider } from './context/CartContext';
+import React from 'react';
+import { CartProvider, useCart } from './context/CartContext';
+import Toast from './components/Toast';
 import NavBar from './sections/NavBar';
 import Home from './sections/Home';
 import Sweets from './sections/Sweets';
 import About from './sections/About';
 import Contact from './sections/Contact';
-import "./index.css";
+import Footer from './sections/Footer';
+import './App.css';
 
-const App = () => {
+function AppContent() {
+  const { toast, hideToast } = useCart();
 
   return (
-    <CartProvider>
-      <div>
-          <NavBar/>
-          <Home/>
-          <Sweets/>
-          <About/>
-          <Contact/>
-      </div> 
-    </CartProvider>
-  )
+    <>
+      <Toast 
+        message={toast.message} 
+        show={toast.show} 
+        onClose={hideToast}
+        type={toast.type}
+      />
+      <NavBar />
+      <Home />
+      <Sweets />
+      <About />
+      <Contact />
+      <Footer />
+    </>
+  );
 }
 
-export default App
+function App() {
+  return (
+    <CartProvider>
+      <AppContent />
+    </CartProvider>
+  );
+}
+
+export default App;
