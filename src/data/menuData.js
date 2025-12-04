@@ -1,10 +1,12 @@
+import Weli from '../assets/about.jpg';
+
 export const menuItems = {
   Traditional: [
     {
       id: 'welithalapa',
       name: 'Welithalapa',
       desc: 'Rice flour & treacle delicacy',
-      image: 'https://placehold.co/70x70/2A1B12/D4AF37?text=Weli',
+      image: Weli,
       hasVariants: true,
       variants: [
         { name: 'Normal Welithalapa (1kg Box)', price: 1150 },
@@ -70,7 +72,7 @@ export const menuItems = {
     {
       id: 'asmi',
       name: 'Asmi',
-      desc: '10pcs Box (Take Away Only)',
+      desc: '10pcs Box',
       image: 'https://placehold.co/70x70/2A1B12/D4AF37?text=Asmi',
       price: 1200,
       hasVariants: false,
@@ -79,7 +81,7 @@ export const menuItems = {
     {
       id: 'kokis',
       name: 'Kokis',
-      desc: '30pcs Box (Take Away Only)',
+      desc: '30pcs Box',
       image: 'https://placehold.co/70x70/2A1B12/D4AF37?text=Kokis',
       price: 1100,
       hasVariants: false,
@@ -115,7 +117,7 @@ export const menuItems = {
       hasVariants: true,
       tag: 'Take Away Only',
       variants: [
-        { name: '1kg Tray (Take Away Only)', price: 1790 },
+        { name: '1kg Tray', price: 1790 },
         { name: '1 Cup (MOQ 10)', price: 180 }
       ]
     }

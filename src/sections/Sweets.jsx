@@ -156,7 +156,7 @@ const ItemCard = ({ item, expandedItem, toggleItem, setPreviewImage }) => {
                   <h3 className="font-serif text-lg font-bold text-[#2A1B12] leading-tight">{item.name}</h3>
                   {item.desc && <p className="text-xs text-[#8D6E63] mt-1.5 leading-relaxed font-medium">{item.desc}</p>}
                   {item.tag && (
-                      <span className="inline-block mt-2 text-[10px] uppercase tracking-wider font-bold text-[#C62828] bg-[#FFEBEE] px-2 py-0.5 rounded-full border border-[#FFCDD2]">
+                      <span className="inline-block mt-2 text-[8px] md:text-[10px] uppercase tracking-wider font-bold text-[#C62828] bg-[#FFEBEE] px-2 py-0.5 rounded-full border border-[#FFCDD2]">
                           {item.tag}
                       </span>
                   )}
@@ -195,7 +195,7 @@ const ItemCard = ({ item, expandedItem, toggleItem, setPreviewImage }) => {
             `}
           >
               {isMultiVariant && item.variants.map((variant, idx) => (
-                  <div key={idx} className="flex justify-between items-center p-3 pl-24 pr-4 border-b border-[#E6DCC8]/50 last:border-0 hover:bg-[#F5F0E1]/50 transition-colors">
+                  <div key={idx} className="flex justify-between items-center p-3 pl-6 pr-4 border-b border-[#E6DCC8]/50 last:border-0 hover:bg-[#F5F0E1]/50 transition-colors">
                       <span className="text-sm text-[#5D4037] font-bold">{variant.name}</span>
                       <div className="flex items-center gap-4">
                           <span className="text-sm font-serif font-bold text-[#2A1B12]">LKR {variant.price}</span>
@@ -233,7 +233,7 @@ const Sweets = () => {
 
   return (
     <>
-      <section id="sweets" className="min-h-screen bg-[#FDF6E3] text-[#2A1B12] pt-20 px-4 md:px-6">
+      <section id="sweets" className="min-h-screen bg-linear-to-b from-[#fdeebb] to-[#D4AF37] text-[#2A1B12] pt-20 px-4 md:px-6">
         <div className="max-w-3xl mx-auto">
           {/* Header */}
           <div className="mb-8 text-center">
