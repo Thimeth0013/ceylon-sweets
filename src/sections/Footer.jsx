@@ -112,7 +112,7 @@ const Footer = () => {
                     <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z"/>
                   </svg>
                 </a>
-                <a href="https://youtube.com/@ceylonsweets?si=UtrvzxwLAVizpjQt" aria-label="YouTube" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-[#3E2C22] flex items-center justify-center hover:bg-[#D4AF37] hover:text-[#2A1B12] transition-all duration-150">
+                <a href="https://www.youtube.com/@CeylonSweets/shorts" aria-label="YouTube" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-[#3E2C22] flex items-center justify-center hover:bg-[#D4AF37] hover:text-[#2A1B12] transition-all duration-150">
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M22.058 6.945a2.625 2.625 0 0 0 -1.853 -1.853C18.57 4.65 12 4.65 12 4.65s-6.57 0 -8.205 0.443a2.625 2.625 0 0 0 -1.853 1.853A27 27 0 0 0 1.5 12a27 27 0 0 0 0.443 5.055 2.625 2.625 0 0 0 1.853 1.853c1.635 0.443 8.205 0.443 8.205 0.443s6.57 0 8.205 -0.443a2.625 2.625 0 0 0 1.853 -1.853A27 27 0 0 0 22.5 12a27 27 0 0 0 -0.443 -5.055M9.9 15.15v-6.3l5.452 3.15Z"/>
                   </svg>
@@ -127,7 +127,7 @@ const Footer = () => {
                 <li><a href="#home" className="hover:text-[#D4AF37] transition-colors">Home</a></li>
                 <li><a href="#sweets" className="hover:text-[#D4AF37] transition-colors">Our Collection</a></li>
                 <li><a href="#about" className="hover:text-[#D4AF37] transition-colors">About Us</a></li>
-                <li><a href="#contact" className="hover:text-[#D4AF37] transition-colors">Contact</a></li>
+                <li><a href="#socials" className="hover:text-[#D4AF37] transition-colors">Socials</a></li>
               </ul>
             </div>
 

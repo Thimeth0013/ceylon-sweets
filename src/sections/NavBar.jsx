@@ -53,7 +53,7 @@ const NavBar = () => {
     { name: 'Home', id: 'home' },
     { name: 'Sweets', id: 'sweets' },
     { name: 'About', id: 'about' },
-    { name: 'Contact', id: 'contact' },
+    { name: 'Socials', id: 'socials' },
   ];
 
   const scrollToSection = (id) => {
@@ -70,7 +70,7 @@ const NavBar = () => {
   return (
     <>
       <nav 
-        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 transform 
+        className={`fixed top-0 left-0 w-full z-1000 transition-all duration-300 transform 
         ${isVisible || isMobileMenuOpen ? 'translate-y-0' : '-translate-y-full'} 
         ${isScrolled || isMobileMenuOpen ? 'bg-[#2A1B12]/95 shadow-lg backdrop-blur-md' : 'bg-transparent'}
         py-3 md:py-5`}

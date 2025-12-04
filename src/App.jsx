@@ -5,7 +5,7 @@ import NavBar from './sections/NavBar';
 import Home from './sections/Home';
 import Sweets from './sections/Sweets';
 import About from './sections/About';
-import Contact from './sections/Contact';
+import Socials from './sections/Socials';
 import Footer from './sections/Footer';
 import './App.css';
 
@@ -24,7 +24,7 @@ function AppContent() {
       <Home />
       <Sweets />
       <About />
-      <Contact />
+      <Socials />
       <Footer />
     </>
   );
