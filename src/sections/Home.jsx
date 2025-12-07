@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import bgVideo from '../assets/bgvideo.webm';
+import bgVideo from '../assets/bgvideo.mp4';
 import { ArrowDownRight } from 'lucide-react';
 
 const Home = () => {
