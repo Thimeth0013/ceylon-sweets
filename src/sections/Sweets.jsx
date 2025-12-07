@@ -233,7 +233,7 @@ const Sweets = () => {
 
   return (
     <>
-      <section id="sweets" className="min-h-screen bg-linear-to-b from-[#fdeebb] to-[#D4AF37] text-[#2A1B12] pt-20 px-4 md:px-6">
+      <section id="sweets" className="min-h-screen bg-[#fdeebb] text-[#2A1B12] pt-20 px-4 md:px-6 border-b-5 border-[#D4AF37]">
         <div className="max-w-3xl mx-auto">
           {/* Header */}
           <div className="mb-8 text-center">

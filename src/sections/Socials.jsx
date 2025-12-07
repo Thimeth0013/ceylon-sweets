@@ -96,7 +96,7 @@ const VideoCard = ({ video, className = "" }) => {
       </div>
       
       {/* Caption */}
-      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
+      <div className="absolute bottom-0 left-0 right-0 bg-linear-to-t from-black/80 to-transparent p-4">
         <p className="text-white font-serif text-sm md:text-base">{video.caption}</p>
       </div>
     </motion.div>
@@ -105,7 +105,7 @@ const VideoCard = ({ video, className = "" }) => {
 
 // --- SUB-COMPONENT: TESTIMONIAL CARD ---
 const TestimonialCard = ({ data }) => (
-  <div className="bg-[#FDF6E3] p-4 md:p-5 rounded-xl shadow-lg w-[260px] md:w-[300px] shrink-0 mx-3 flex flex-col justify-between h-full border-t-4 border-[#E8B54D] transition-colors duration-300 hover:font-bold ">
+  <div className="bg-[#FDF6E3] p-4 md:p-5 rounded-xl shadow-lg w-[260px] md:w-[300px] shrink-0 mx-3 flex flex-col justify-between h-full border-t-4 border-[#E8B54D] transition-colors duration-300">
     <div>
       <p className="text-[#3D2817] text-xs md:text-sm font-serif leading-snug">"{data.text}"</p>
     </div>
@@ -137,7 +137,7 @@ const Socials = () => {
         viewport={{ once: true }}
         src={manLeftImage} 
         alt="Traditional Guard Left"
-        className="absolute bottom-0 -left-5 md:left-8 w-28 md:w-32 lg:w-44 z-100 hidden sm:block pointer-events-none drop-shadow-lg"
+        className="absolute bottom-0 -left-5 md:left-8 w-28 md:w-32 lg:w-44 z-30 hidden sm:block pointer-events-none drop-shadow-lg"
       />
       <motion.img 
         initial={{ opacity: 30, x: 50 }}
@@ -146,7 +146,7 @@ const Socials = () => {
         viewport={{ once: true }}
         src={manRightImage} 
         alt="Traditional Guard Right"
-        className="absolute bottom-0 -right-5 md:right-8 w-28 md:w-32 lg:w-44 z-100 hidden sm:block pointer-events-none drop-shadow-lg"
+        className="absolute bottom-0 -right-5 md:right-8 w-28 md:w-32 lg:w-44 z-30 hidden sm:block pointer-events-none drop-shadow-lg"
       />
 
       {/* MAIN CONTENT CONTAINER */}
@@ -166,9 +166,9 @@ const Socials = () => {
           </h2>
           <motion.div 
             initial={{ width: 0 }}
-            whileInView={{ width: 96 }} // 24 * 4px = 96px
+            whileInView={{ width: 96 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="h-1 bg-[#E8B54D] mx-auto rounded-full"
+            className="h-0.5 bg-[#E8B54D] mx-auto rounded-full"
           ></motion.div>
         </motion.div>
 
@@ -181,7 +181,7 @@ const Socials = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="grid grid-cols-3 gap-6 md:hidden max-w-sm mx-auto"
+            className="grid grid-cols-5 gap-6 md:hidden max-w-sm mx-auto"
           >
             {[
               { label: "WhatsApp", href: "https://wa.me/94782099856", svg: "path_data_here" },
@@ -232,7 +232,7 @@ const Socials = () => {
           >
             <div className="flex gap-4 px-4">
               {socialVideos.map((video) => (
-                <div key={video.id} className="snap-center shrink-0 w-[240px]">
+                <div key={video.id} className="snap-center shrink-0 w-60">
                   <VideoCard video={video} />
                 </div>
               ))}
@@ -269,7 +269,7 @@ const Socials = () => {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 1 }}
-          className="w- md:w-280 relative pb-0 md:pb-4 pt-8 md:pt-12 border-t border-[#E8B54D]/10 bg-[radial-gradient(ellipse_at_center,#2A1B12_0%,transparent_70%)]"
+          className="w-full md:w-280 relative pb-0 md:pb-4 pt-8 md:pt-12 border-t border-[#E8B54D]/10 bg-[radial-gradient(ellipse_at_center,#2A1B12_0%,transparent_70%)]"
         >
           <div className='pb-4'>
             <h3 className="text-center text-[#E8B54D] font-serif text-lg md:text-xl uppercase tracking-widest">
@@ -278,7 +278,7 @@ const Socials = () => {
             <DecorativeDivider/>
           </div>
           
-          <div className="flex overflow-hidden group mask-gradient">
+          <div className="flex overflow-hidden group mask-[linear-gradient(to_right,transparent,black_15%,black_85%,transparent)]">
             <div
               ref={marqueeRef}
               className="flex animate-scroll"
@@ -349,13 +349,12 @@ const SocialLinkMobile = ({ social }) => (
     target="_blank"
     rel="noopener noreferrer"
     className="flex flex-col items-center justify-center group"
-    whileHover={{ scale: 1.1, rotate: 5 }}
     whileTap={{ scale: 0.9 }}
   >
-    <div className="w-16 h-16 rounded-full bg-[#E8B54D]/10 border-2 border-[#E8B54D]/30 flex items-center justify-center mb-2 text-[#E8B54D] group-hover:bg-[#E8B54D] group-hover:text-[#3D2817] transition-colors duration-300">
-      <svg className="w-9 h-9" fill="currentColor" viewBox="0 0 24 24"><path d={social.iconPath || desktopSocialsData.find(d => d.label === social.label)?.iconPath} /></svg>
+    <div className="w-10 h-10 rounded-full bg-[#E8B54D]/10 border-2 border-[#E8B54D]/30 flex items-center justify-center mb-2 text-[#E8B54D]">
+      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d={social.iconPath || desktopSocialsData.find(d => d.label === social.label)?.iconPath} /></svg>
     </div>
-    <span className="text-[#FDF6E3]/70 font-bold uppercase tracking-wider text-[9px] group-hover:text-[#E8B54D] transition-colors duration-300">
+    <span className="text-[#FDF6E3]/70 font-bold uppercase tracking-wider text-[9px]">
       {social.label}
     </span>
   </motion.a>
@@ -368,7 +367,7 @@ const SocialLinkDesktop = ({ social }) => (
     target="_blank"
     rel="noopener noreferrer"
     className="flex flex-col items-center justify-center p-2 group"
-    whileHover={{ scale: 1.1, y: -5 }}
+    whileHover={{ scale: 1.1, rotate: 5 }}
   >
     <div className="mb-2 text-[#E8B54D] group-hover:text-white transition-colors duration-300">
       <svg className="w-10 h-10" fill="currentColor" viewBox="0 0 24 24"><path d={social.iconPath} /></svg>
@@ -381,9 +380,9 @@ const SocialLinkDesktop = ({ social }) => (
 
 const DecorativeDivider = () => (
   <div className="flex items-center justify-center gap-4 mb-6 mt-6">
-    <div className="h-px w-12 md:w-24 bg-gradient-to-r from-transparent to-[#E8B54D]"></div>
+    <div className="h-px w-12 md:w-24 bg-linear-to-r from-transparent to-[#E8B54D]"></div>
     <div className="w-2 h-2 rotate-45 border border-[#E8B54D] bg-[#3D2817]"></div>
-    <div className="h-px w-12 md:w-24 bg-gradient-to-l from-transparent to-[#E8B54D]"></div>
+    <div className="h-px w-12 md:w-24 bg-linear-to-l from-transparent to-[#E8B54D]"></div>
   </div>
 );
 

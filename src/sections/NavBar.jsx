@@ -69,95 +69,96 @@ const NavBar = () => {
 
   return (
     <>
-      <nav 
-        className={`fixed top-0 left-0 w-full z-1000 transition-all duration-300 transform 
-        ${isVisible || isMobileMenuOpen ? 'translate-y-0' : '-translate-y-full'} 
-        ${isScrolled || isMobileMenuOpen ? 'bg-[#2A1B12]/95 shadow-lg backdrop-blur-md' : 'bg-transparent'}
-        py-3 md:py-5`}
-      >
-        <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-          
-          {/* 1. Logo */}
-          <button onClick={() => scrollToSection('home')} className="shrink-0 z-50">
-            <img src={logo} alt="Ceylon Sweets" className='w-10 h-10 md:w-12 md:h-12 object-contain'/>
-          </button>
+      {!isCartOpen && (
+        <nav 
+          className={`fixed top-0 left-0 w-full z-1000 transition-all duration-300 transform 
+          ${isVisible || isMobileMenuOpen ? 'translate-y-0' : '-translate-y-full'} 
+          ${isScrolled || isMobileMenuOpen ? 'bg-[#2A1B12]/95 shadow-lg backdrop-blur-md' : 'bg-transparent'}
+          py-3 md:py-5`}
+        >
+          <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
+            
+            {/* 1. Logo */}
+            <button onClick={() => scrollToSection('home')} className="shrink-0 z-50">
+              <img src={logo} alt="Ceylon Sweets" className='w-10 h-10 md:w-12 md:h-12 object-contain'/>
+            </button>
 
-          {/* 2. Desktop Links (Hidden on Mobile) */}
-          <div className="hidden md:flex gap-8 absolute left-1/2 transform -translate-x-1/2">
-            {navLinks.map((link) => (
-              <button
-                key={link.name}
-                onClick={() => scrollToSection(link.id)}
-                className="text-[#FDF6E3] hover:text-[#D4AF37] font-serif text-lg transition-colors tracking-wide"
+            {/* 2. Desktop Links (Hidden on Mobile) */}
+            <div className="hidden md:flex gap-8 absolute left-1/2 transform -translate-x-1/2">
+              {navLinks.map((link) => (
+                <button
+                  key={link.name}
+                  onClick={() => scrollToSection(link.id)}
+                  className="text-[#FDF6E3] hover:text-[#D4AF37] font-serif text-lg transition-colors tracking-wide"
+                >
+                  {link.name}
+                </button>
+              ))}
+            </div>
+
+            {/* 3. Right Side Actions (Cart & Mobile Toggle) */}
+            <div className="flex items-center gap-5 z-50">
+              {/* Cart Icon */}
+              <button 
+                onClick={() => { setIsCartOpen(true); setIsMobileMenuOpen(false); }}
+                className="relative text-[#D4AF37] hover:text-[#FDF6E3] transition-colors"
               >
-                {link.name}
+                <ShoppingCart size={26} />
+                {cartQuantity > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-[#D4AF37] text-black text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center border border-black">
+                    {cartQuantity}
+                  </span>
+                )}
               </button>
-            ))}
+
+              {/* Mobile Menu Toggle (Visible only on Mobile) */}
+              <button 
+                className="md:hidden text-[#FDF6E3] hover:text-[#D4AF37] transition-colors"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              >
+                {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+              </button>
+            </div>
           </div>
 
-          {/* 3. Right Side Actions (Cart & Mobile Toggle) */}
-          <div className="flex items-center gap-5 z-50">
-            {/* Cart Icon */}
-            <button 
-              onClick={() => { setIsCartOpen(true); setIsMobileMenuOpen(false); }}
-              className="relative text-[#D4AF37] hover:text-[#FDF6E3] transition-colors"
-            >
-              <ShoppingCart size={26} />
-              {cartQuantity > 0 && (
-                <span className="absolute -top-2 -right-2 bg-[#D4AF37] text-black text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center border border-black">
-                  {cartQuantity}
-                </span>
-              )}
-            </button>
+          {/* --- MOBILE MENU OVERLAY --- */}
+          <AnimatePresence>
+            {isMobileMenuOpen && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: '100vh' }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+                className="fixed inset-0 top-[60px] bg-[#2A1B12] z-40 md:hidden overflow-hidden flex flex-col items-center justify-center border-t border-[#D4AF37]/20"
+              >
+                <div className="flex flex-col gap-8 items-center -mt-20">
+                  {navLinks.map((link, index) => (
+                    <motion.button
+                      key={link.name}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.1 + (index * 0.1) }}
+                      onClick={() => scrollToSection(link.id)}
+                      className="text-[#FDF6E3] hover:text-[#D4AF37] font-serif text-3xl font-medium tracking-wider transition-colors"
+                    >
+                      {link.name}
+                    </motion.button>
+                  ))}
+                  
+                  {/* Decorative Divider */}
+                  <motion.div 
+                     initial={{ scaleX: 0 }}
+                     animate={{ scaleX: 1 }}
+                     transition={{ delay: 0.5, duration: 0.5 }}
+                     className="w-16 h-0.5 bg-[#D4AF37]/50 mt-4" 
+                  />
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </nav>
+      )}
 
-            {/* Mobile Menu Toggle (Visible only on Mobile) */}
-            <button 
-              className="md:hidden text-[#FDF6E3] hover:text-[#D4AF37] transition-colors"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            >
-              {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
-            </button>
-          </div>
-        </div>
-
-        {/* --- MOBILE MENU OVERLAY --- */}
-        <AnimatePresence>
-          {isMobileMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: '100vh' }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
-              className="fixed inset-0 top-[60px] bg-[#2A1B12] z-40 md:hidden overflow-hidden flex flex-col items-center justify-center border-t border-[#D4AF37]/20"
-            >
-              <div className="flex flex-col gap-8 items-center -mt-20">
-                {navLinks.map((link, index) => (
-                  <motion.button
-                    key={link.name}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.1 + (index * 0.1) }}
-                    onClick={() => scrollToSection(link.id)}
-                    className="text-[#FDF6E3] hover:text-[#D4AF37] font-serif text-3xl font-medium tracking-wider transition-colors"
-                  >
-                    {link.name}
-                  </motion.button>
-                ))}
-                
-                {/* Decorative Divider */}
-                <motion.div 
-                   initial={{ scaleX: 0 }}
-                   animate={{ scaleX: 1 }}
-                   transition={{ delay: 0.5, duration: 0.5 }}
-                   className="w-16 h-0.5 bg-[#D4AF37]/50 mt-4" 
-                />
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </nav>
-
-      {/* Cart Modal */}
       <Cart isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
     </>
   );
